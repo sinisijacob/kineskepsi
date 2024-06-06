@@ -15,6 +15,11 @@ defmodule KineskepsiWeb.PostLive.PostComponent do
           <div class="post-body">
             <%= @post.body %>
           </div>
+          <div class="media-right">
+            <%!-- <.link patch={"/posts/{@post.id}/show/edit"}>
+              <.button>✏️</.button>
+            </.link> --%>
+          </div>
       </div>
     </div>
   """
