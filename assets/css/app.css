@@ -1,0 +1,22 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* This file is for your main application CSS */
+.column {
+    float: left;
+}
+
+.column-10 {
+    flex: 10%
+}
+
+.column-90 {
+    flex: 90%
+}
+
+.post-body {
+    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}

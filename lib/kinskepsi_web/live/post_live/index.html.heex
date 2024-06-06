@@ -1,0 +1,31 @@
+<.header>
+  Recent Posts
+  <:actions>
+    <.link patch={~p"/posts/new"}>
+      <.button>New Post</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<div id="posts">
+  <div class="column">
+    <tr :for={{post_id, post} <- @streams.posts} id={post_id}>
+      <.live_component
+        module={KineskepsiWeb.PostLive.PostComponent}
+        id={post.id}
+        post={post}
+      />
+    </tr>
+  </div>
+</div>
+
+<.modal :if={@live_action in [:new, :edit]} id="post-modal" show on_cancel={JS.patch(~p"/posts")}>
+  <.live_component
+    module={KineskepsiWeb.PostLive.FormComponent}
+    id={@post.id || :new}
+    title={@page_title}
+    action={@live_action}
+    post={@post}
+    patch={~p"/posts"}
+  />
+</.modal>
