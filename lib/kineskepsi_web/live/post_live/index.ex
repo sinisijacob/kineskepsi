@@ -6,6 +6,7 @@ defmodule KineskepsiWeb.PostLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
+    if connected?(socket), do: Timeline.subscribe()
     {:ok, stream(socket, :posts, Timeline.list_posts())}
   end
 

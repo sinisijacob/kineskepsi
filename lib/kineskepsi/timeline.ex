@@ -53,6 +53,7 @@ defmodule Kineskepsi.Timeline do
     %Post{}
     |> Post.changeset(attrs)
     |> Repo.insert()
+    |> broadcast(:saved)
   end
 
   @doc """
@@ -71,6 +72,7 @@ defmodule Kineskepsi.Timeline do
     post
     |> Post.changeset(attrs)
     |> Repo.update()
+    |> broadcast(:saved)
   end
 
   @doc """
@@ -100,5 +102,15 @@ defmodule Kineskepsi.Timeline do
   """
   def change_post(%Post{} = post, attrs \\ %{}) do
     Post.changeset(post, attrs)
+  end
+
+  def subscribe() do
+    Phoenix.PubSub.subscribe(Kineskepsi.PubSub, "posts")
+  end
+
+  defp broadcast({:error, _reason} = error, _event), do: error
+  defp broadcast({:ok, post}, event) do
+    Phoenix.PubSub.broadcast(Kineskepsi.PubSub, "posts", {event, post})
+    {:ok, post}
   end
 end
