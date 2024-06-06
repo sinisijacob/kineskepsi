@@ -16,9 +16,9 @@ defmodule KineskepsiWeb.PostLive.PostComponent do
             <%= @post.body %>
           </div>
           <div class="media-right">
-            <%!-- <.link patch={"/posts/{@post.id}/show/edit"}>
+            <.link patch={"/posts/" <> Integer.to_string(@post.id) <> "/show/edit"}>
               <.button>✏️</.button>
-            </.link> --%>
+            </.link>
           </div>
       </div>
     </div>
