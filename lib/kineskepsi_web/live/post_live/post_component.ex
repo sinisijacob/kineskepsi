@@ -10,7 +10,7 @@ defmodule KineskepsiWeb.PostLive.PostComponent do
           </div>
         </div>
         <div class="column column-90 post-body">
-          <b>@<%= @post.username %></b>
+          <b>@<%= @post.username %></b> - <%= if @post.inserted_at === @post.updated_at do @post.inserted_at else @post.updated_at end%>
           <br/>
           <div class="post-body">
             <%= @post.body %>
@@ -26,7 +26,7 @@ defmodule KineskepsiWeb.PostLive.PostComponent do
             </div>
           </nav>
           <div class="media-right">
-            <.link patch={"/posts/" <> Integer.to_string(@post.id) <> "/show/edit"}>
+            <.link patch={~p"/posts/#{@post}/show/edit"}>
               <.button>✏️</.button>
             </.link>
           </div>
