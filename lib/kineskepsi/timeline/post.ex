@@ -6,7 +6,6 @@ defmodule Kineskepsi.Timeline.Post do
     field :body, :string
     field :likes_count, :integer, default: 0
     field :repost_count, :integer, default: 0
-    field :username, :string, default: "jacob_sinisi"
 
     timestamps(type: :utc_datetime)
   end
