@@ -7,6 +7,7 @@ defmodule Kineskepsi.Timeline do
   alias Kineskepsi.Repo
 
   alias Kineskepsi.Timeline.Post
+  alias Kineskepsi.Accounts
 
   @doc """
   Returns the list of posts.
@@ -19,6 +20,7 @@ defmodule Kineskepsi.Timeline do
   """
   def list_posts do
     Repo.all(from p in Post, order_by: [desc: p.id])
+      |> Repo.preload(user: :user)
   end
 
   @doc """
@@ -50,10 +52,16 @@ defmodule Kineskepsi.Timeline do
 
   """
   def create_post(attrs \\ %{}) do
-    %Post{}
+    post = %Post{}
     |> Post.changeset(attrs)
     |> Repo.insert()
     |> broadcast(:saved)
+
+    IO.inspect(attrs)
+    IO.inspect(post)
+    user = Accounts.get_user!(attrs.user_id)
+    thing = Ecto.build_assoc(user, post, name: "OWNER")
+    Repo.insert(thing)
   end
 
   @doc """

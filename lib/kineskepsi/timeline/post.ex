@@ -6,6 +6,7 @@ defmodule Kineskepsi.Timeline.Post do
     field :body, :string
     field :likes_count, :integer, default: 0
     field :repost_count, :integer, default: 0
+    belongs_to :user, Kineskepsi.Accounts.User
 
     timestamps(type: :utc_datetime)
   end
@@ -13,8 +14,8 @@ defmodule Kineskepsi.Timeline.Post do
   @doc false
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:body])
-    |> validate_required([:body])
+    |> cast(attrs, [:body, :user_id])
+    |> validate_required([:body, :user_id])
     |> validate_length(:body, min: 5, max: 200)
   end
 end

@@ -5,11 +5,11 @@ defmodule KineskepsiWeb.PostLive.FormComponent do
 
   @impl true
   def render(assigns) do
+    %{post: post} = assigns
     ~H"""
     <div>
       <.header>
         <%= @title %>
-        <:subtitle>Use this form to manage post records in your database.</:subtitle>
       </.header>
 
       <.simple_form
@@ -19,6 +19,7 @@ defmodule KineskepsiWeb.PostLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
+        <.input field={@form[:user_id]} type="hidden" value={post.user_id} />
         <.input field={@form[:body]} type="textarea" label="Body" />
         <:actions>
           <.button phx-disable-with="Saving...">Save Post</.button>

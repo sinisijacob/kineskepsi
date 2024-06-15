@@ -17,19 +17,6 @@ defmodule KineskepsiWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", KineskepsiWeb do
-    pipe_through :browser
-
-    live "/posts", PostLive.Index, :index
-    live "/posts/new", PostLive.Index, :new
-    live "/posts/:id/edit", PostLive.Index, :edit
-
-    live "/posts/:id", PostLive.Show, :show
-    live "/posts/:id/show/edit", PostLive.Show, :edit
-
-    get "/", PageController, :home
-  end
-
   # Other scopes may use custom stacks.
   # scope "/api", KineskepsiWeb do
   #   pipe_through :api
@@ -75,6 +62,9 @@ defmodule KineskepsiWeb.Router do
       on_mount: [{KineskepsiWeb.UserAuth, :ensure_authenticated}] do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
+      live "/posts/new", PostLive.Index, :new
+      live "/posts/:id/edit", PostLive.Index, :edit
+      live "/posts/:id/show/edit", PostLive.Show, :edit
     end
   end
 
@@ -88,5 +78,15 @@ defmodule KineskepsiWeb.Router do
       live "/users/confirm/:token", UserConfirmationLive, :edit
       live "/users/confirm", UserConfirmationInstructionsLive, :new
     end
+  end
+
+  scope "/", KineskepsiWeb do
+    pipe_through [:browser]
+
+    live "/posts", PostLive.Index, :index
+
+    live "/posts/:id", PostLive.Show, :show
+
+    get "/", PageController, :home
   end
 end
