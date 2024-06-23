@@ -31,7 +31,7 @@ defmodule KineskepsiWeb.PostLive.FormComponent do
 
   @impl true
   def update(%{post: post} = assigns, socket) do
-    changeset = Timeline.change_post(post)
+    changeset = Timeline.change_post(post, assigns)
 
     {:ok,
      socket

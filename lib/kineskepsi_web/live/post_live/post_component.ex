@@ -10,7 +10,7 @@ defmodule KineskepsiWeb.PostLive.PostComponent do
           </div>
         </div>
         <div class="column column-90 post-body">
-          <b>@<%= @post.user.username %></b> - <%= if @post.inserted_at === @post.updated_at do @post.inserted_at else @post.updated_at end%>
+          <b>@<%= @post.user.id %></b> - <%= if @post.inserted_at === @post.updated_at do @post.inserted_at else @post.updated_at end%>
           <br/>
           <div class="post-body">
             <%= @post.body %>
@@ -35,13 +35,13 @@ defmodule KineskepsiWeb.PostLive.PostComponent do
   """
   end
 
-  def handle_event("like", _, socket) do
-    Chirp.Timeline.inc_likes(socket.assigns.post)
-    {:noreply, socket}
-  end
+  # def handle_event("like", _, socket) do
+  #   Chirp.Timeline.inc_likes(socket.assigns.post)
+  #   {:noreply, socket}
+  # end
 
-  def handle_event("repost", _, socket) do
-    Chirp.Timeline.inc_reposts(socket.assigns.post)
-    {:noreply, socket}
-  end
+  # def handle_event("repost", _, socket) do
+  #   Chirp.Timeline.inc_reposts(socket.assigns.post)
+  #   {:noreply, socket}
+  # end
 end

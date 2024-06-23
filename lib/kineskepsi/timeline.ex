@@ -52,16 +52,11 @@ defmodule Kineskepsi.Timeline do
 
   """
   def create_post(attrs \\ %{}) do
-    post = %Post{}
-    |> Post.changeset(attrs)
+    IO.inspect(attrs)
+    %Post{}
+    |> change_post(attrs)
     |> Repo.insert()
     |> broadcast(:saved)
-
-    IO.inspect(attrs)
-    IO.inspect(post)
-    user = Accounts.get_user!(attrs.user_id)
-    thing = Ecto.build_assoc(user, post, name: "OWNER")
-    Repo.insert(thing)
   end
 
   @doc """
@@ -109,7 +104,17 @@ defmodule Kineskepsi.Timeline do
 
   """
   def change_post(%Post{} = post, attrs \\ %{}) do
-    Post.changeset(post, attrs)
+    IO.inspect(post)
+    user = Accounts.get_user!(attrs.user_id)
+
+    IO.inspect(user)
+
+    # post
+    #   |> Repo.preload(:user)
+
+    post
+    |> Post.changeset(attrs)
+    |> Ecto.Changeset.put_assoc(:user, user)
   end
 
   def subscribe() do

@@ -59,6 +59,7 @@ defmodule Kineskepsi.TimelineTest do
 
     test "change_post/1 returns a post changeset" do
       post = post_fixture()
+      # TODO: add attrs to change_post call
       assert %Ecto.Changeset{} = Timeline.change_post(post)
     end
   end
