@@ -1,8 +1,10 @@
 defmodule KineskepsiWeb.PostLive.Index do
   use KineskepsiWeb, :live_view
 
+  alias KineskepsiWeb.UserAuth
   alias Kineskepsi.Timeline
   alias Kineskepsi.Timeline.Post
+  alias Kineskepsi.Accounts.User
 
   @impl true
   def mount(_params, _session, socket) do
@@ -22,9 +24,12 @@ defmodule KineskepsiWeb.PostLive.Index do
   end
 
   defp apply_action(socket, :new, _params) do
+    %User{id: user_id} = socket.assigns.current_user
+
     socket
     |> assign(:page_title, "New Post")
-    |> assign(:post, %Post{})
+    |> assign(:user_id, user_id)
+    |> assign(:post, %Post{user_id: user_id})
   end
 
   defp apply_action(socket, :index, _params) do

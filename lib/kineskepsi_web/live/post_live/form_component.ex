@@ -2,14 +2,16 @@ defmodule KineskepsiWeb.PostLive.FormComponent do
   use KineskepsiWeb, :live_component
 
   alias Kineskepsi.Timeline
+  alias Kineskepsi.Timeline.Post
+  alias Kineskepsi.Accounts.User
 
   @impl true
   def render(assigns) do
+    %{post: post} = assigns
     ~H"""
     <div>
       <.header>
         <%= @title %>
-        <:subtitle>Use this form to manage post records in your database.</:subtitle>
       </.header>
 
       <.simple_form
@@ -19,6 +21,7 @@ defmodule KineskepsiWeb.PostLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
+        <.input field={@form[:user_id]} type="hidden" value={post.user_id} />
         <.input field={@form[:body]} type="textarea" label="Body" />
         <:actions>
           <.button phx-disable-with="Saving...">Save Post</.button>
@@ -30,7 +33,7 @@ defmodule KineskepsiWeb.PostLive.FormComponent do
 
   @impl true
   def update(%{post: post} = assigns, socket) do
-    changeset = Timeline.change_post(post)
+    changeset = Timeline.change_post(post, assigns)
 
     {:ok,
      socket
@@ -68,6 +71,10 @@ defmodule KineskepsiWeb.PostLive.FormComponent do
   end
 
   defp save_post(socket, :new, post_params) do
+    # Need to insert user id into the post params here, serverside
+    # Map.put(post_params, :user_id, socket.assigns.id)
+    # %User{id: user_id} = socket.assigns.current_user
+    # post_params = Map.put(post_params, :user_id, user_id)
     case Timeline.create_post(post_params) do
       {:ok, post} ->
         notify_parent({:saved, post})
