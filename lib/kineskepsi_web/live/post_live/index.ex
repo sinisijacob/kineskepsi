@@ -28,6 +28,7 @@ defmodule KineskepsiWeb.PostLive.Index do
 
     socket
     |> assign(:page_title, "New Post")
+    |> assign(:user_id, user_id)
     |> assign(:post, %Post{user_id: user_id})
   end
 

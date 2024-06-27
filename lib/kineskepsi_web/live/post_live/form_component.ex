@@ -2,6 +2,8 @@ defmodule KineskepsiWeb.PostLive.FormComponent do
   use KineskepsiWeb, :live_component
 
   alias Kineskepsi.Timeline
+  alias Kineskepsi.Timeline.Post
+  alias Kineskepsi.Accounts.User
 
   @impl true
   def render(assigns) do
@@ -69,6 +71,10 @@ defmodule KineskepsiWeb.PostLive.FormComponent do
   end
 
   defp save_post(socket, :new, post_params) do
+    # Need to insert user id into the post params here, serverside
+    # Map.put(post_params, :user_id, socket.assigns.id)
+    # %User{id: user_id} = socket.assigns.current_user
+    # post_params = Map.put(post_params, :user_id, user_id)
     case Timeline.create_post(post_params) do
       {:ok, post} ->
         notify_parent({:saved, post})

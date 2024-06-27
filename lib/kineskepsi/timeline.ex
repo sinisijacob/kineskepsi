@@ -20,7 +20,7 @@ defmodule Kineskepsi.Timeline do
   """
   def list_posts do
     Repo.all(from p in Post, order_by: [desc: p.id])
-      |> Repo.preload(user: :user)
+      |> Repo.preload(:user)
   end
 
   @doc """
@@ -53,8 +53,14 @@ defmodule Kineskepsi.Timeline do
   """
   def create_post(attrs \\ %{}) do
     IO.inspect(attrs)
+
+    user = Accounts.get_user!(attrs["user_id"])
+
+    IO.inspect(user)
+
     %Post{}
-    |> change_post(attrs)
+    |> Post.changeset(attrs)
+    |> Ecto.Changeset.put_assoc(:user, user)
     |> Repo.insert()
     |> broadcast(:saved)
   end
@@ -104,17 +110,8 @@ defmodule Kineskepsi.Timeline do
 
   """
   def change_post(%Post{} = post, attrs \\ %{}) do
-    IO.inspect(post)
-    user = Accounts.get_user!(attrs.user_id)
-
-    IO.inspect(user)
-
-    # post
-    #   |> Repo.preload(:user)
-
     post
     |> Post.changeset(attrs)
-    |> Ecto.Changeset.put_assoc(:user, user)
   end
 
   def subscribe() do

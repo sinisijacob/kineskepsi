@@ -59,7 +59,8 @@ defmodule KineskepsiWeb.Router do
     pipe_through [:browser, :require_authenticated_user]
 
     live_session :require_authenticated_user,
-      on_mount: [{KineskepsiWeb.UserAuth, :ensure_authenticated}] do
+      on_mount: [{KineskepsiWeb.UserAuth, :ensure_authenticated},
+                 {KineskepsiWeb.UserAuth, :mount_current_user}] do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
       live "/posts/new", PostLive.Index, :new
