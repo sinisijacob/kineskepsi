@@ -64,6 +64,7 @@ defmodule KineskepsiWeb.Router do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
       live "/posts/new", PostLive.Index, :new
+      live "/posts/:id", PostLive.Show, :show
       live "/posts/:id/edit", PostLive.Index, :edit
       live "/posts/:id/show/edit", PostLive.Show, :edit
     end
@@ -85,8 +86,6 @@ defmodule KineskepsiWeb.Router do
     pipe_through [:browser]
 
     live "/posts", PostLive.Index, :index
-
-    live "/posts/:id", PostLive.Show, :show
 
     get "/", PageController, :home
   end
