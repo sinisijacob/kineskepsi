@@ -1,0 +1,25 @@
+Things to do:
+Right justify user info
+Replace phoenix icon with custom one
+Make the post creation not error out
+
+Lock post editing to the creator(s) of the post
+
+Make posts more complex. They should have:
+    Title
+    Blurb
+    Thumbnail
+    Body
+    Tags
+    nice to haves:
+    Inline images in body, maybe some nice formats to edit in, markup, latex, etc.
+    More than 1 author
+Title, thumbnail, and blurb are visible on home page scroll
+User can't view individual post until logged individual
+
+Messaging system (maybe a phoenix module already?)
+    Users need to message one another anonymously
+    Inbox
+    Groups
+
+All posts seen by a user should be logged
