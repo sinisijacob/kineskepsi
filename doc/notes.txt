@@ -1,5 +1,5 @@
 Things to do:
-Condense header to 1 row
+Right justify user info
 Replace phoenix icon with custom one
 Make the post creation not error out
 
