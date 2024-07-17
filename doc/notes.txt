@@ -15,7 +15,6 @@ Make posts more complex. They should have:
     Inline images in body, maybe some nice formats to edit in, markup, latex, etc.
     More than 1 author
 Title, thumbnail, and blurb are visible on home page scroll
-User can't view full post until logged in
 
 Messaging system (maybe a phoenix module already?)
     Users need to message one another anonymously

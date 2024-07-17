@@ -38,8 +38,14 @@ defmodule KineskepsiWeb.PostLive.Index do
     |> assign(:post, nil)
   end
 
+  # TODO: Why do we need both of these handle_infos? That seems wrong.
   @impl true
   def handle_info({KineskepsiWeb.PostLive.FormComponent, {:saved, post}}, socket) do
+    {:noreply, stream_insert(socket, :posts, post)}
+  end
+
+  @impl true
+  def handle_info({:saved, post}, socket) do
     {:noreply, stream_insert(socket, :posts, post)}
   end
 
