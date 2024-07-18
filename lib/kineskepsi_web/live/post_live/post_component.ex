@@ -25,11 +25,13 @@ defmodule KineskepsiWeb.PostLive.PostComponent do
               </a>
             </div>
           </nav>
+        <%= if @current_user != nil and @current_user.id === @post.user.id do %>
           <div class="media-right">
             <.link patch={~p"/posts/#{@post}/show/edit"}>
               <.button>✏️</.button>
             </.link>
           </div>
+        <% end %>
       </div>
     </div>
   """

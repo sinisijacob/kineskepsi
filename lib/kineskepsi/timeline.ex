@@ -52,11 +52,7 @@ defmodule Kineskepsi.Timeline do
 
   """
   def create_post(attrs \\ %{}) do
-    IO.inspect(attrs)
-
     user = Accounts.get_user!(attrs["user_id"])
-
-    IO.inspect(user)
 
     %Post{}
     |> Post.changeset(attrs)

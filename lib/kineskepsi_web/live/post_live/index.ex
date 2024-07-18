@@ -4,7 +4,17 @@ defmodule KineskepsiWeb.PostLive.Index do
   alias KineskepsiWeb.UserAuth
   alias Kineskepsi.Timeline
   alias Kineskepsi.Timeline.Post
+  alias Kineskepsi.Accounts
   alias Kineskepsi.Accounts.User
+
+  @impl true
+  def mount(_params, %{"user_token" => user_token}, socket) do
+    # IO.inspect(socket.assigns)
+    if connected?(socket), do: Timeline.subscribe()
+    socket = socket
+      |> assign(:current_user, Accounts.get_user_by_session_token(user_token))
+    {:ok, stream(socket, :posts, Timeline.list_posts())}
+  end
 
   @impl true
   def mount(_params, _session, socket) do
