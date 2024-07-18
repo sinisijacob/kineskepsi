@@ -4,6 +4,7 @@ Replace phoenix icon with custom one
 Make the post creation not error out
 
 Lock post editing to the creator(s) of the post
+    backend AND ui
 
 Make posts more complex. They should have:
     Title
@@ -13,6 +14,7 @@ Make posts more complex. They should have:
     Tags
     nice to haves:
     Inline images in body, maybe some nice formats to edit in, markup, latex, etc.
+        Store post content differently? File store or something?
     More than 1 author
 Title, thumbnail, and blurb are visible on home page scroll
 

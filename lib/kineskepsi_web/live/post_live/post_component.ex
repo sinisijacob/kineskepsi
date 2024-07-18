@@ -10,10 +10,12 @@ defmodule KineskepsiWeb.PostLive.PostComponent do
           </div>
         </div>
         <div class="column column-90 post-body">
-          <b>@<%= @post.user.id %></b> - <%= if @post.inserted_at === @post.updated_at do @post.inserted_at else @post.updated_at end%>
+          <b><%= @post.title %></b> - @<%= @post.user.id %>
+          <br/>
+          <%= if @post.inserted_at === @post.updated_at do @post.inserted_at else @post.updated_at end%>
           <br/>
           <div class="post-body">
-            <%= @post.body %>
+            <%= @post.blurb %>
           </div>
           <nav class="level is-mobile">
             <div class="level-left">

@@ -9,7 +9,6 @@ defmodule KineskepsiWeb.PostLive.Index do
 
   @impl true
   def mount(_params, %{"user_token" => user_token}, socket) do
-    # IO.inspect(socket.assigns)
     if connected?(socket), do: Timeline.subscribe()
     socket = socket
       |> assign(:current_user, Accounts.get_user_by_session_token(user_token))

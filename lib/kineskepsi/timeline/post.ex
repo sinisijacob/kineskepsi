@@ -4,6 +4,8 @@ defmodule Kineskepsi.Timeline.Post do
   alias Kineskepsi.Accounts.User
 
   schema "posts" do
+    field :title, :string
+    field :blurb, :string
     field :body, :string
     field :likes_count, :integer, default: 0
     field :repost_count, :integer, default: 0
@@ -14,9 +16,13 @@ defmodule Kineskepsi.Timeline.Post do
 
   @doc false
   def changeset(post, attrs) do
+    IO.inspect(post)
+    IO.inspect(attrs)
     post
-    |> cast(attrs, [:body, :user_id])
-    |> validate_required([:body, :user_id])
-    |> validate_length(:body, min: 5, max: 200)
+    |> cast(attrs, [:title, :blurb, :body, :user_id])
+    |> validate_required([:title, :blurb, :body, :user_id])
+    |> validate_length(:title, min: 5, max: 50)
+    |> validate_length(:blurb, min: 50, max: 500)
+    |> validate_length(:body, min: 500, max: 80000)
   end
 end
