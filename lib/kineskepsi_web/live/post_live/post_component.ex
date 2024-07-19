@@ -21,7 +21,7 @@ defmodule KineskepsiWeb.PostLive.PostComponent do
           <nav class="level is-mobile">
             <div class="level-left">
               <a class="level-item" phx-click="repost" phx-target="{@myself}">
-                <span class="icon is-small"><.icon name="hero-chat-bubble-oval-left-ellipsis" class="mt-0.5 h-8 w-8 flex-none" /><%= @post.repost_count %></span>
+                <span class="icon is-small"><.icon name="hero-chat-bubble-oval-left-ellipsis-solid" class="mt-0.5 h-8 w-8 flex-none" /><%= @post.repost_count %></span>
               </a>
               <a class="level-item" phx-click="like" phx-target="{@myself}">
                 <span class="icon is-small"><.icon name="hero-heart-solid" type="full" class="mt-0.5 h-8 w-8 flex-none" /><%= @post.likes_count %></span>
