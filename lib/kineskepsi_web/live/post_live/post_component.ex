@@ -1,5 +1,6 @@
 defmodule KineskepsiWeb.PostLive.PostComponent do
   use KineskepsiWeb, :live_component
+  import KineskepsiWeb.LiveHelpers, only: [format_date: 1]
 
   def render(assigns) do
     ~H"""
@@ -12,7 +13,7 @@ defmodule KineskepsiWeb.PostLive.PostComponent do
         <div class="column column-90 post-body">
           <b><%= @post.title %></b> - @<%= @post.user.id %>
           <br/>
-          <%= if @post.inserted_at === @post.updated_at do @post.inserted_at else @post.updated_at end%>
+          <%= if @post.inserted_at === @post.updated_at do format_date(@post.inserted_at) else format_date(@post.updated_at) <> " (Edited)" end%>
           <br/>
           <div class="post-body">
             <%= @post.blurb %>
@@ -20,10 +21,10 @@ defmodule KineskepsiWeb.PostLive.PostComponent do
           <nav class="level is-mobile">
             <div class="level-left">
               <a class="level-item" phx-click="repost" phx-target="{@myself}">
-                <span class="icon is-small"><i class="fas fa-arrows-retweet"></i><%= @post.repost_count %></span>
+                <span class="icon is-small"><.icon name="hero-chat-bubble-oval-left-ellipsis" class="mt-0.5 h-8 w-8 flex-none" /><%= @post.repost_count %></span>
               </a>
               <a class="level-item" phx-click="like" phx-target="{@myself}">
-                <span class="icon is-small"><i class="fas fa-heart"></i><%= @post.likes_count %></span>
+                <span class="icon is-small"><.icon name="hero-heart-solid" type="full" class="mt-0.5 h-8 w-8 flex-none" /><%= @post.likes_count %></span>
               </a>
             </div>
           </nav>

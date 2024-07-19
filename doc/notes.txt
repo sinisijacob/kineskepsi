@@ -1,6 +1,5 @@
 Things to do:
 Right justify user info
-Replace phoenix icon with custom one
 Make the post creation not error out
 
 Lock post editing to the creator(s) of the post

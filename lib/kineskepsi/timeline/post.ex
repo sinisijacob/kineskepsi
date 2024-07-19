@@ -16,8 +16,6 @@ defmodule Kineskepsi.Timeline.Post do
 
   @doc false
   def changeset(post, attrs) do
-    IO.inspect(post)
-    IO.inspect(attrs)
     post
     |> cast(attrs, [:title, :blurb, :body, :user_id])
     |> validate_required([:title, :blurb, :body, :user_id])
