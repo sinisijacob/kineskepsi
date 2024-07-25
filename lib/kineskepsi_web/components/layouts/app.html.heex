@@ -3,4 +3,7 @@
     <.flash_group flash={@flash} />
     <%= @inner_content %>
   </div>
+  <!-- TODO: locally host this js, don't fetch live -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script :if={assigns[:user_token]}>window.userToken = "<%= Base.encode64(assigns[:user_token]) %>";</script>
 </main>

@@ -20,3 +20,17 @@
     padding-bottom: 10px;
     padding-left: 10px;
 }
+
+#message-list {
+    border: 1px solid #777;
+    height: 300px;
+    overflow: scroll;
+}
+
+#message-chat-box {
+    border: 1px solid #777;
+    height: 400px;
+    padding: 10px;
+    overflow: scroll;
+    margin-bottom: 50px;
+}
