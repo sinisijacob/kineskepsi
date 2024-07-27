@@ -17,8 +17,10 @@ Make posts more complex. They should have:
     More than 1 author
 Title, thumbnail, and blurb are visible on home page scroll
 
-Messaging system (maybe a phoenix module already?)
-    Users need to message one another anonymously
+Messaging system
+    Users need to message one another anonymously - done
+    Need to launch a new chat room when user clicks message
+        Should include room in the message record - enum?
     Inbox
     Groups
 
