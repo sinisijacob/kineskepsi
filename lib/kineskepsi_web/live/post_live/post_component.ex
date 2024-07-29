@@ -20,7 +20,7 @@ defmodule KineskepsiWeb.PostLive.PostComponent do
           </div>
           <nav class="level is-mobile">
             <div class="level-left">
-              <a class="level-item" phx-click="repost" phx-target="{@myself}">
+              <a class="level-item" phx-click="open_chat" phx-value-id="{@post.}">
                 <span class="icon is-small"><.icon name="hero-chat-bubble-oval-left-ellipsis-solid" class="mt-0.5 h-8 w-8 flex-none" /><%= @post.repost_count %></span>
               </a>
               <a class="level-item" phx-click="like" phx-target="{@myself}">
@@ -39,14 +39,4 @@ defmodule KineskepsiWeb.PostLive.PostComponent do
     </div>
   """
   end
-
-  # def handle_event("like", _, socket) do
-  #   Chirp.Timeline.inc_likes(socket.assigns.post)
-  #   {:noreply, socket}
-  # end
-
-  # def handle_event("repost", _, socket) do
-  #   Chirp.Timeline.inc_reposts(socket.assigns.post)
-  #   {:noreply, socket}
-  # end
 end

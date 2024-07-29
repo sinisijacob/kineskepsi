@@ -66,4 +66,9 @@ defmodule KineskepsiWeb.PostLive.Index do
 
     {:noreply, stream_delete(socket, :posts, post)}
   end
+
+  @impl true
+  def handle_event("open_chat", _, socket) do
+    {:noreply, push_event(socket, "open_chat_window", %{id: "item-#{item.id}"})}
+  end
 end

@@ -3,7 +3,10 @@ defmodule KineskepsiWeb.MessagingChannel do
   alias Kineskepsi.Message
 
   @impl true
-  def join("messaging:lobby", payload, socket) do
+  def join(channel_name, payload, socket) do
+    [group, room] = String.split(channel_name, ":")
+    payload = payload
+      |> Map.put("room", room)
     if authorized?(payload) do
       send(self(), :after_join)
       {:ok, socket}
