@@ -68,7 +68,9 @@ defmodule KineskepsiWeb.PostLive.Index do
   end
 
   @impl true
-  def handle_event("open_chat", _, socket) do
-    {:noreply, push_event(socket, "open_chat_window", %{id: "item-#{item.id}"})}
+  def handle_event("open_chat", %{"id" => id}, socket) do
+
+
+    {:noreply, push_event(socket, "open_chat_window", %{id: "foo"})}
   end
 end

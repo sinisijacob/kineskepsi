@@ -4,8 +4,8 @@ defmodule Kineskepsi.UsersToChatRooms do
 
   schema "users_to_chat_rooms" do
 
-    field :user_id, :id
-    field :chat_room_id, :id
+    belongs_to :user, Kineskepsi.Accounts.User
+    belongs_to :chat_room, Kineskepsi.ChatRoom
 
     timestamps(type: :utc_datetime)
   end

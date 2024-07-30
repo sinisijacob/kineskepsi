@@ -35,9 +35,9 @@ topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
 window.addEventListener("phx:page-loading-start", _info => topbar.show(300))
 window.addEventListener("phx:page-loading-stop", _info => topbar.hide())
 window.addEventListener("phx:open_chat_window", (e) => {
-  let el = document.getElementById(e.detail.id)
+  let el = document.getElementById("message-chat-box")
   if(el) {
-    // logic for highlighting
+    // show chat window
   }
 })
 
